@@ -12,11 +12,11 @@ import AppKit
 
 
 func getActiveWindow() throws -> String {
-    let frontmostAppPID = NSWorkspace.shared.frontmostApplication!.processIdentifier
+    let frontmostAppPID = NSWorkspace.shared().frontmostApplication!.processIdentifier
     let windows = CGWindowListCopyWindowInfo([.optionOnScreenOnly, .excludeDesktopElements], kCGNullWindowID) as! [[String: Any]]
     
     for window in windows {
-        let windowOwnerPID = window[kCGWindowOwnerPID as String] as! Int
+        let windowOwnerPID = window[kCGWindowOwnerPID as String] as! pid_t
         
         if windowOwnerPID != frontmostAppPID {
             continue
@@ -35,10 +35,10 @@ func getActiveWindow() throws -> String {
             continue
         }
         
-        let appPid = window[kCGWindowOwnerPID as String] as! pid_t
-        
-        // This can't fail as we're only dealing with apps
-        let app = NSRunningApplication(processIdentifier: appPid)!
+//        let appPid = window[kCGWindowOwnerPID as String] as! pid_t
+//
+//        // This can't fail as we're only dealing with apps
+//        let app = NSRunningApplication(processIdentifier: appPid)!
         
 //        let dict: [String: Any] = [
 //            "title": window[kCGWindowName as String] as! String,
@@ -60,6 +60,8 @@ func getActiveWindow() throws -> String {
         
         return window[kCGWindowOwnerName as String] as! String
     }
+    
+    return ""
     
 }
 
