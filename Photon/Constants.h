@@ -5,7 +5,7 @@
 #define Photon_Constants_h
 
 #define MENU_SYMBOL (@"\u262f")
-#define STOP (@"Stop")
+#define STOP (@"Pause")
 #define START (@"Start")
 
 #define TELEMETRY_URL (@"https://telemetry.anish.io/api/v1/submit")
