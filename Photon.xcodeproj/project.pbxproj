@@ -13,7 +13,6 @@
 		F802B9F01AD81FB700FCFD65 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F802B9EE1AD81FB700FCFD65 /* MainMenu.xib */; };
 		F802B9FC1AD81FB700FCFD65 /* PhotonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F802B9FB1AD81FB700FCFD65 /* PhotonTests.m */; };
 		F80722861E6BD17F000C3ECE /* NSArray+Functional.m in Sources */ = {isa = PBXBuildFile; fileRef = F80722851E6BD17F000C3ECE /* NSArray+Functional.m */; };
-		F825A7A81E6B984300106611 /* stats.m in Sources */ = {isa = PBXBuildFile; fileRef = F825A7A71E6B984300106611 /* stats.m */; };
 		F83E30F71AD8252D0098C5CC /* BrightnessController.m in Sources */ = {isa = PBXBuildFile; fileRef = F83E30F61AD8252D0098C5CC /* BrightnessController.m */; };
 		F83E30FB1AD836F10098C5CC /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = F83E30F91AD836F10098C5CC /* util.c */; };
 		F851E2CE1D4DACEE0016CC9C /* Photon.iconset in Resources */ = {isa = PBXBuildFile; fileRef = F851E2CD1D4DACEE0016CC9C /* Photon.iconset */; };
@@ -43,8 +42,6 @@
 		F802B9FB1AD81FB700FCFD65 /* PhotonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotonTests.m; sourceTree = "<group>"; };
 		F80722841E6BD17F000C3ECE /* NSArray+Functional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Functional.h"; sourceTree = "<group>"; };
 		F80722851E6BD17F000C3ECE /* NSArray+Functional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Functional.m"; sourceTree = "<group>"; };
-		F825A7A71E6B984300106611 /* stats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = stats.m; sourceTree = "<group>"; };
-		F825A7A91E6B984C00106611 /* stats.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stats.h; sourceTree = "<group>"; };
 		F83E30F41AD823640098C5CC /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		F83E30F51AD8252D0098C5CC /* BrightnessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrightnessController.h; sourceTree = "<group>"; };
 		F83E30F61AD8252D0098C5CC /* BrightnessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrightnessController.m; sourceTree = "<group>"; };
@@ -96,8 +93,6 @@
 			children = (
 				F802B9E71AD81FB700FCFD65 /* AppDelegate.h */,
 				F802B9E81AD81FB700FCFD65 /* AppDelegate.m */,
-				F825A7A71E6B984300106611 /* stats.m */,
-				F825A7A91E6B984C00106611 /* stats.h */,
 				F83E30F51AD8252D0098C5CC /* BrightnessController.h */,
 				F83E30F61AD8252D0098C5CC /* BrightnessController.m */,
 				F8833AE21D419803006FD2B0 /* Model.h */,
@@ -244,7 +239,6 @@
 				F802B9EB1AD81FB700FCFD65 /* main.m in Sources */,
 				F83E30FB1AD836F10098C5CC /* util.c in Sources */,
 				F83E30F71AD8252D0098C5CC /* BrightnessController.m in Sources */,
-				F825A7A81E6B984300106611 /* stats.m in Sources */,
 				F80722861E6BD17F000C3ECE /* NSArray+Functional.m in Sources */,
 				F802B9E91AD81FB700FCFD65 /* AppDelegate.m in Sources */,
 				F8833AE41D419803006FD2B0 /* Model.m in Sources */,
