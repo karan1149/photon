@@ -21,11 +21,12 @@ import AppKit
         let windows = CGWindowListCopyWindowInfo([.optionOnScreenOnly, .excludeDesktopElements], kCGNullWindowID) as! [[String: Any]]
         
         for window in windows {
-            let windowOwnerPID = window[kCGWindowOwnerPID as String] as! pid_t
-            
-            if windowOwnerPID != frontmostAppPID {
-                continue
+            if let windowOwnerPID = (window[kCGWindowOwnerPID as String] ?? 0) as? pid_t {
+                if windowOwnerPID != frontmostAppPID {
+                    continue
+                }
             }
+            
             
             // Skip transparent windows, like with Chrome
             if (window[kCGWindowAlpha as String] as! Double) == 0 {
