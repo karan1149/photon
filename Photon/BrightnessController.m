@@ -64,6 +64,15 @@
 }
 
 - (void)tick:(NSTimer *)timer {
+    
+    NSString *windowName = [self.tracker getActiveWindow];
+    // fix problem involving increasing brightness continuously after changing app
+    NSLog(@"%@", self.lastApp);
+    if ([windowName isEqualToString:_lastApp]){
+        return;
+    }
+    self.lastApp = windowName;
+    
     // get screen content lightness
     CGImageRef contents = CGDisplayCreateImage(kCGDirectMainDisplay);
     if (!contents) {
@@ -71,16 +80,6 @@
     }
     double lightness = [self computeLightness:contents];
     CFRelease(contents);
-    
-    NSString *windowName = [self.tracker getActiveWindow];
-    if ([windowName isEqualToString:_lastApp]){
-        return;
-    }
-    self.lastApp = windowName;
-    
-    
-    
-    
 
 
     // check if backlight has been manually changed
