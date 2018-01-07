@@ -21,10 +21,12 @@ import AppKit
         let windows = CGWindowListCopyWindowInfo([.optionOnScreenOnly, .excludeDesktopElements], kCGNullWindowID) as! [[String: Any]]
         
         for window in windows {
-            if let windowOwnerPID = (window[kCGWindowOwnerPID as String] ?? 0) as? pid_t {
-                if windowOwnerPID != frontmostAppPID {
+            if let windowOwnerPID = (window[kCGWindowOwnerPID as String] ?? 0) as? Int {
+                if windowOwnerPID != Int(frontmostAppPID) {
                     continue
                 }
+            } else {
+                continue
             }
             
             
