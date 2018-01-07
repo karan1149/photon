@@ -111,9 +111,11 @@
 }
 
 - (float)predictFromInput:(float)input {
+    
     // nearest neighbor
     float bestdiff = FLT_MAX, besty = DEFAULT_BRIGHTNESS;
     for (XYPoint *p in self.points) {
+//        NSLog(@"%.2f, %.2f",p.x, p.y);
         float diff = fabsf(p.x - input);
         if (diff < bestdiff) {
             bestdiff = diff;
