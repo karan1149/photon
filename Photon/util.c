@@ -4,13 +4,6 @@
 #include "util.h"
 #include <math.h>
 
-double linear_interpolate(double x0, double y0, double x1, double y1, double xq)
-{
-    double dydx = (y1 - y0) / (x1 - x0);
-    double yq = y0 + dydx * (xq - x0);
-    return yq;
-}
-
 double clip(double value, double low, double high)
 {
     return (value < low) ? (low) : (value > high ? high : value);
