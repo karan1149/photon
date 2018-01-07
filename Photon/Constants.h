@@ -4,7 +4,6 @@
 #ifndef Photon_Constants_h
 #define Photon_Constants_h
 
-#define MENU_SYMBOL (@"\u262f")
 #define STOP (@"Pause")
 #define START (@"Start")
 
