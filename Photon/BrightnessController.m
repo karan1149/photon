@@ -75,18 +75,12 @@
         if (!self.noticed) {
             self.noticed = true;
             self.lastNoticed = setPoint;
-//            NSLog(self.noticed ? @"1Yes" : @"1No");
-//            NSLog(@"%.2f", self.lastNoticed);
             return; // wait till next tick to see if it's still changing
         }
         if (fabsf(setPoint - self.lastNoticed) > CHANGE_NOTICE) {
             self.lastNoticed = setPoint;
-//            NSLog(@"2 %.2f", self.lastNoticed);
             return; // it's still changing
         } else {
-//            NSLog(@"finished");
-            
-//            NSLog(@"lightness");
             // get screen content lightness
             CGImageRef contents = CGDisplayCreateImage(kCGDirectMainDisplay);
             if (!contents) {
@@ -95,12 +89,10 @@
             double lightness = [self computeLightness:contents];
             CFRelease(contents);
             
-//            NSLog(@"observing %.2f %.2f", setPoint, lightness);
             [self.model observeOutput:setPoint forInput:lightness];
             self.noticed = false;
             
             float brightness = [self.model predictFromInput:lightness];
-//            NSLog(@"predicting %.2f %.2f", lightness, brightness);
             
             [self setBrightness:brightness];
             
@@ -116,7 +108,6 @@
         }
         self.lastApp = windowName;
         
-//        NSLog(@"lightness w/o");
         // get screen content lightness
         CGImageRef contents = CGDisplayCreateImage(kCGDirectMainDisplay);
         if (!contents) {
@@ -126,7 +117,6 @@
         CFRelease(contents);
         
         float brightness = [self.model predictFromInput:lightness];
-//        NSLog(@"predicting %.2f %.2f", lightness, brightness);
         [self setBrightness:brightness];
         
     }
