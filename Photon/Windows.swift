@@ -29,7 +29,6 @@ import AppKit
                 continue
             }
             
-            
             // Skip transparent windows, like with Chrome
             if (window[kCGWindowAlpha as String] as! Double) == 0 {
                 continue
@@ -43,37 +42,12 @@ import AppKit
                 continue
             }
             
-            //        let appPid = window[kCGWindowOwnerPID as String] as! pid_t
-            //
-            //        // This can't fail as we're only dealing with apps
-            //        let app = NSRunningApplication(processIdentifier: appPid)!
-            
-            //        let dict: [String: Any] = [
-            //            "title": window[kCGWindowName as String] as! String,
-            //            "id": window[kCGWindowNumber as String] as! Int,
-            //            "bounds": [
-            //                "x": bounds.origin.x,
-            //                "y": bounds.origin.y,
-            //                "width": bounds.width,
-            //                "height": bounds.height
-            //            ],
-            //            "owner": [
-            //                "name": window[kCGWindowOwnerName as String] as! String,
-            //                "processId": appPid,
-            //                "bundleId": app.bundleIdentifier!,
-            //                "path": app.bundleURL!.path
-            //            ],
-            //            "memoryUsage": window[kCGWindowMemoryUsage as String] as! Int
-            //        ]
-            
             return window[kCGWindowOwnerName as String] as! String
         }
         
         return ""
         
     }
-    
-
     
 }
 
