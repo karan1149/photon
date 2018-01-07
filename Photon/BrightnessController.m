@@ -7,12 +7,15 @@
 #import "util.h"
 #import <IOKit/graphics/IOGraphicsLib.h>
 #import <ApplicationServices/ApplicationServices.h>
+#import "Photon-swift.h"
 
 @interface BrightnessController ()
 
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) Model *model;
+@property (nonatomic, strong) WindowTracker *tracker;
 @property float lastSet;
+@property NSString* lastApp;
 
 - (void)tick:(NSTimer *)timer;
 
@@ -34,6 +37,8 @@
         self.model = [Model new];
         self.lastSet = -1; // this causes tick to notice that the brightness has changed significantly
                            // which causes it to create a new data point for the current screen
+        self.lastApp = @"";
+        self.tracker = [[WindowTracker alloc] init];
     }
     return self;
 }
@@ -66,6 +71,16 @@
     }
     double lightness = [self computeLightness:contents];
     CFRelease(contents);
+    
+    NSString *windowName = [self.tracker getActiveWindow];
+    if ([windowName isEqualToString:_lastApp]){
+        return;
+    }
+    self.lastApp = windowName;
+    
+    
+    
+    
 
 
     // check if backlight has been manually changed
