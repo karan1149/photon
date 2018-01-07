@@ -122,32 +122,6 @@
     }
     return besty;
 
-    /*
-    // find neighbors on left and right
-    // and linear interpolate between them
-
-    if (self.points.count == 0) {
-        return DEFAULT_BRIGHTNESS;
-    }
-
-    XYPoint *first = [self.points firstObject];
-    if (input <= first.x) {
-        return first.y; // can't interpolate, there's nothing to the left
-    }
-    NSUInteger index;
-    for (index = 1; index < self.points.count; index++) {
-        if (input < ((XYPoint *) [self.points objectAtIndex:index]).x) {
-            break;
-        }
-    }
-    if (index >= self.points.count) {
-        return ((XYPoint *) [self.points lastObject]).y; // can't interpolate, nothing to the right
-    }
-    // interpolate
-    XYPoint *left = [self.points objectAtIndex:(index - 1)];
-    XYPoint *right = [self.points objectAtIndex:index];
-    return linear_interpolate(left.x, left.y, right.x, right.y, input);
-    */
 }
 
 - (void)restoreDefaults {
