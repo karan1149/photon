@@ -16,6 +16,8 @@
 @property (nonatomic, strong) WindowTracker *tracker;
 @property float lastSet;
 @property NSString* lastApp;
+@property bool noticed;
+@property float lastNoticed;
 
 - (void)tick:(NSTimer *)timer;
 
@@ -39,6 +41,8 @@
                            // which causes it to create a new data point for the current screen
         self.lastApp = @"";
         self.tracker = [[WindowTracker alloc] init];
+        self.noticed = false;
+        self.lastNoticed = 0;
     }
     return self;
 }
@@ -65,46 +69,67 @@
 
 - (void)tick:(NSTimer *)timer {
     
-    NSString *windowName = [self.tracker getActiveWindow];
-    // fix problem involving increasing brightness continuously after changing app
-    NSLog(@"%@", self.lastApp);
-    if ([windowName isEqualToString:_lastApp]){
-        return;
-    }
-    self.lastApp = windowName;
-    
-    // get screen content lightness
-    CGImageRef contents = CGDisplayCreateImage(kCGDirectMainDisplay);
-    if (!contents) {
-        return;
-    }
-    double lightness = [self computeLightness:contents];
-    CFRelease(contents);
-
-
     // check if backlight has been manually changed
-    static bool noticed = false;
-    static float lastNoticed = 0;
     float setPoint = [self getBrightness];
-    if (noticed || fabsf(self.lastSet - setPoint) > CHANGE_NOTICE) {
-        if (!noticed) {
-            noticed = true;
-            lastNoticed = setPoint;
+    if (self.noticed || fabsf(self.lastSet - setPoint) > CHANGE_NOTICE) {
+        if (!self.noticed) {
+            self.noticed = true;
+            self.lastNoticed = setPoint;
+//            NSLog(self.noticed ? @"1Yes" : @"1No");
+//            NSLog(@"%.2f", self.lastNoticed);
             return; // wait till next tick to see if it's still changing
         }
-        if (fabsf(setPoint - lastNoticed) > CHANGE_NOTICE) {
-            lastNoticed = setPoint;
+        if (fabsf(setPoint - self.lastNoticed) > CHANGE_NOTICE) {
+            self.lastNoticed = setPoint;
+//            NSLog(@"2 %.2f", self.lastNoticed);
             return; // it's still changing
         } else {
+//            NSLog(@"finished");
+            
+//            NSLog(@"lightness");
+            // get screen content lightness
+            CGImageRef contents = CGDisplayCreateImage(kCGDirectMainDisplay);
+            if (!contents) {
+                return;
+            }
+            double lightness = [self computeLightness:contents];
+            CFRelease(contents);
+            
+//            NSLog(@"observing %.2f %.2f", setPoint, lightness);
             [self.model observeOutput:setPoint forInput:lightness];
-            noticed = false;
-            // don't return, fall through and evaluate model here
+            self.noticed = false;
+            
+            float brightness = [self.model predictFromInput:lightness];
+//            NSLog(@"predicting %.2f %.2f", lightness, brightness);
+            
+            [self setBrightness:brightness];
+            
+            NSString *windowName = [self.tracker getActiveWindow];
+            self.lastApp = windowName;
+            
         }
+    } else {
+        
+        NSString *windowName = [self.tracker getActiveWindow];
+        if ([windowName isEqualToString:_lastApp]){
+            return;
+        }
+        self.lastApp = windowName;
+        
+//        NSLog(@"lightness w/o");
+        // get screen content lightness
+        CGImageRef contents = CGDisplayCreateImage(kCGDirectMainDisplay);
+        if (!contents) {
+            return;
+        }
+        double lightness = [self computeLightness:contents];
+        CFRelease(contents);
+        
+        float brightness = [self.model predictFromInput:lightness];
+//        NSLog(@"predicting %.2f %.2f", lightness, brightness);
+        [self setBrightness:brightness];
+        
     }
-
-    float brightness = [self.model predictFromInput:lightness];
-
-    [self setBrightness:brightness];
 }
 
 - (double)computeLightness:(CGImageRef) image {
