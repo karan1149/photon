@@ -4,6 +4,7 @@
 #import "AppDelegate.h"
 #import "Constants.h"
 #import "BrightnessController.h"
+#import "EMCLoginItem.h"
 
 @interface AppDelegate ()
 
@@ -11,6 +12,7 @@
 @property (strong, nonatomic) IBOutlet NSMenuItem *toggle;
 @property (strong, nonatomic) NSStatusItem *statusItem;
 @property (strong, nonatomic) BrightnessController *brightnessController;
+@property (strong, nonatomic) EMCLoginItem *loginController;
 
 @end
 
@@ -26,6 +28,14 @@
     self.brightnessController = [BrightnessController new];
     [self.brightnessController start];
     [self.toggle setTitle:STOP];
+    
+    
+    
+    self.loginController = [EMCLoginItem new];
+    NSLog(@"HI");
+    [self.loginController addLoginItem];
+    
+    NSLog([self.loginController isLoginItem] ? @"YES" : @"NO");
 
 }
 
