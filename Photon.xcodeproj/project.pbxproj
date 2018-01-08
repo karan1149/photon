@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		634339966AF8D865D3338400 /* libPods-PhotonTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0863A33BBA5C59DABDCACB6A /* libPods-PhotonTests.a */; };
-		6FFF38A8AD1B748BE3240E0B /* libPods-Photon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F0B6D558CB78ADCA18B2153 /* libPods-Photon.a */; };
 		F802B9E91AD81FB700FCFD65 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F802B9E81AD81FB700FCFD65 /* AppDelegate.m */; };
 		F802B9EB1AD81FB700FCFD65 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F802B9EA1AD81FB700FCFD65 /* main.m */; };
 		F802B9ED1AD81FB700FCFD65 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F802B9EC1AD81FB700FCFD65 /* Images.xcassets */; };
@@ -32,12 +30,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		07ABF3856D1CAB216B7E22E0 /* Pods-PhotonTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotonTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PhotonTests/Pods-PhotonTests.debug.xcconfig"; sourceTree = "<group>"; };
-		0863A33BBA5C59DABDCACB6A /* libPods-PhotonTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PhotonTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7E81BB8E41287E9CCBE1B8CF /* Pods-PhotonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotonTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PhotonTests/Pods-PhotonTests.release.xcconfig"; sourceTree = "<group>"; };
-		8F0B6D558CB78ADCA18B2153 /* libPods-Photon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Photon.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B5EE236D7F45ADE8E4412184 /* Pods-Photon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Photon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Photon/Pods-Photon.debug.xcconfig"; sourceTree = "<group>"; };
-		B6D36B8D0C167AF8D0B4DC5F /* Pods-Photon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Photon.release.xcconfig"; path = "Pods/Target Support Files/Pods-Photon/Pods-Photon.release.xcconfig"; sourceTree = "<group>"; };
 		F802B9E21AD81FB700FCFD65 /* Photon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Photon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F802B9E61AD81FB700FCFD65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F802B9E71AD81FB700FCFD65 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -65,7 +57,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6FFF38A8AD1B748BE3240E0B /* libPods-Photon.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,32 +64,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				634339966AF8D865D3338400 /* libPods-PhotonTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		36025A6FBB4F9287E2FCC689 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				B5EE236D7F45ADE8E4412184 /* Pods-Photon.debug.xcconfig */,
-				B6D36B8D0C167AF8D0B4DC5F /* Pods-Photon.release.xcconfig */,
-				07ABF3856D1CAB216B7E22E0 /* Pods-PhotonTests.debug.xcconfig */,
-				7E81BB8E41287E9CCBE1B8CF /* Pods-PhotonTests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		F802B9D91AD81FB700FCFD65 = {
 			isa = PBXGroup;
 			children = (
 				F802B9E41AD81FB700FCFD65 /* Photon */,
 				F802B9F81AD81FB700FCFD65 /* PhotonTests */,
 				F802B9E31AD81FB700FCFD65 /* Products */,
-				36025A6FBB4F9287E2FCC689 /* Pods */,
-				F9E972D11319E6AD4296858B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -159,15 +136,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		F9E972D11319E6AD4296858B /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				8F0B6D558CB78ADCA18B2153 /* libPods-Photon.a */,
-				0863A33BBA5C59DABDCACB6A /* libPods-PhotonTests.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -175,12 +143,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F802B9FF1AD81FB700FCFD65 /* Build configuration list for PBXNativeTarget "Photon" */;
 			buildPhases = (
-				7B0AFC15E8AA0EDE60941781 /* [CP] Check Pods Manifest.lock */,
 				F802B9DE1AD81FB700FCFD65 /* Sources */,
 				F802B9DF1AD81FB700FCFD65 /* Frameworks */,
 				F802B9E01AD81FB700FCFD65 /* Resources */,
-				7A7926F2E5994798879934FF /* [CP] Embed Pods Frameworks */,
-				62BC2C422FF0FC9EE020F604 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -195,12 +160,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F802BA021AD81FB700FCFD65 /* Build configuration list for PBXNativeTarget "PhotonTests" */;
 			buildPhases = (
-				186006E0099C619CCBAB8179 /* [CP] Check Pods Manifest.lock */,
 				F802B9F11AD81FB700FCFD65 /* Sources */,
 				F802B9F21AD81FB700FCFD65 /* Frameworks */,
 				F802B9F31AD81FB700FCFD65 /* Resources */,
-				2258177CC893590277F98980 /* [CP] Embed Pods Frameworks */,
-				0266CF07B18536268EDD5710 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -269,105 +231,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		0266CF07B18536268EDD5710 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PhotonTests/Pods-PhotonTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		186006E0099C619CCBAB8179 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PhotonTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2258177CC893590277F98980 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PhotonTests/Pods-PhotonTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		62BC2C422FF0FC9EE020F604 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Photon/Pods-Photon-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7A7926F2E5994798879934FF /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Photon/Pods-Photon-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7B0AFC15E8AA0EDE60941781 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Photon-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F802B9DE1AD81FB700FCFD65 /* Sources */ = {
@@ -499,7 +362,6 @@
 		};
 		F802BA001AD81FB700FCFD65 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B5EE236D7F45ADE8E4412184 /* Pods-Photon.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -516,7 +378,6 @@
 		};
 		F802BA011AD81FB700FCFD65 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B6D36B8D0C167AF8D0B4DC5F /* Pods-Photon.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -532,7 +393,6 @@
 		};
 		F802BA031AD81FB700FCFD65 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 07ABF3856D1CAB216B7E22E0 /* Pods-PhotonTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -554,7 +414,6 @@
 		};
 		F802BA041AD81FB700FCFD65 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7E81BB8E41287E9CCBE1B8CF /* Pods-PhotonTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
