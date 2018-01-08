@@ -7,13 +7,12 @@
 #import "util.h"
 #import <IOKit/graphics/IOGraphicsLib.h>
 #import <ApplicationServices/ApplicationServices.h>
-#import "Photon-swift.h"
+#import <AppKit/AppKit.h>
 
 @interface BrightnessController ()
 
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) Model *model;
-@property (nonatomic, strong) WindowTracker *tracker;
 @property float lastSet;
 @property pid_t lastApp;
 @property bool noticed;
@@ -40,7 +39,6 @@
         self.lastSet = -1; // this causes tick to notice that the brightness has changed significantly
                            // which causes it to create a new data point for the current screen
         self.lastApp = 0;
-        self.tracker = [[WindowTracker alloc] init];
         self.noticed = false;
         self.lastNoticed = 0;
     }
@@ -95,13 +93,13 @@
             
             [self setBrightness:brightness];
             
-            pid_t windowName = [self.tracker getActiveWindow];
+            pid_t windowName = NSWorkspace.sharedWorkspace.frontmostApplication.processIdentifier;
             self.lastApp = windowName;
             
         }
     } else {
         
-        pid_t windowName = [self.tracker getActiveWindow];
+        pid_t windowName = NSWorkspace.sharedWorkspace.frontmostApplication.processIdentifier;
         if (windowName == self.lastApp){
             return;
         }

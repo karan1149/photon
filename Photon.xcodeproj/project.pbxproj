@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9E60E3F22001786800803C96 /* Windows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E60E3F12001786800803C96 /* Windows.swift */; };
 		F802B9E91AD81FB700FCFD65 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F802B9E81AD81FB700FCFD65 /* AppDelegate.m */; };
 		F802B9EB1AD81FB700FCFD65 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F802B9EA1AD81FB700FCFD65 /* main.m */; };
 		F802B9ED1AD81FB700FCFD65 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F802B9EC1AD81FB700FCFD65 /* Images.xcassets */; };
@@ -31,8 +30,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9E60E3F02001786800803C96 /* Photon-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Photon-Bridging-Header.h"; sourceTree = "<group>"; };
-		9E60E3F12001786800803C96 /* Windows.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Windows.swift; sourceTree = "<group>"; };
 		F802B9E21AD81FB700FCFD65 /* Photon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Photon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F802B9E61AD81FB700FCFD65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F802B9E71AD81FB700FCFD65 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -109,8 +106,6 @@
 				F802B9EE1AD81FB700FCFD65 /* MainMenu.xib */,
 				F851E2CD1D4DACEE0016CC9C /* Photon.iconset */,
 				F802B9E51AD81FB700FCFD65 /* Supporting Files */,
-				9E60E3F12001786800803C96 /* Windows.swift */,
-				9E60E3F02001786800803C96 /* Photon-Bridging-Header.h */,
 			);
 			path = Photon;
 			sourceTree = "<group>";
@@ -248,7 +243,6 @@
 				F80722861E6BD17F000C3ECE /* NSArray+Functional.m in Sources */,
 				F802B9E91AD81FB700FCFD65 /* AppDelegate.m in Sources */,
 				F8833AE41D419803006FD2B0 /* Model.m in Sources */,
-				9E60E3F22001786800803C96 /* Windows.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,7 +370,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.karansinghal.Photon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Photon/Photon-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -392,7 +386,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.karansinghal.Photon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Photon/Photon-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
