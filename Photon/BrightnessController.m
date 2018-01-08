@@ -15,7 +15,7 @@
 @property (nonatomic, strong) Model *model;
 @property (nonatomic, strong) WindowTracker *tracker;
 @property float lastSet;
-@property NSString* lastApp;
+@property pid_t lastApp;
 @property bool noticed;
 @property float lastNoticed;
 
@@ -39,7 +39,7 @@
         self.model = [Model new];
         self.lastSet = -1; // this causes tick to notice that the brightness has changed significantly
                            // which causes it to create a new data point for the current screen
-        self.lastApp = @"";
+        self.lastApp = 0;
         self.tracker = [[WindowTracker alloc] init];
         self.noticed = false;
         self.lastNoticed = 0;
@@ -68,7 +68,6 @@
 }
 
 - (void)tick:(NSTimer *)timer {
-    
     // check if backlight has been manually changed
     float setPoint = [self getBrightness];
     if (self.noticed || fabsf(self.lastSet - setPoint) > CHANGE_NOTICE) {
@@ -96,14 +95,14 @@
             
             [self setBrightness:brightness];
             
-            NSString *windowName = [self.tracker getActiveWindow];
+            pid_t windowName = [self.tracker getActiveWindow];
             self.lastApp = windowName;
             
         }
     } else {
         
-        NSString *windowName = [self.tracker getActiveWindow];
-        if ([windowName isEqualToString:_lastApp]){
+        pid_t windowName = [self.tracker getActiveWindow];
+        if (windowName == self.lastApp){
             return;
         }
         self.lastApp = windowName;
