@@ -10,9 +10,11 @@
 
 @property (strong, nonatomic) IBOutlet NSMenu *statusMenu;
 @property (strong, nonatomic) IBOutlet NSMenuItem *toggle;
+@property (strong, nonatomic) IBOutlet NSMenuItem *startupItem;
 @property (strong, nonatomic) NSStatusItem *statusItem;
 @property (strong, nonatomic) BrightnessController *brightnessController;
 @property (strong, nonatomic) EMCLoginItem *loginController;
+@property bool startupItemChecked;
 
 @end
 
@@ -24,6 +26,7 @@
     NSImage *statusImage = [NSImage imageNamed:@"StatusBarImageTemplate"];
     [self.statusItem setImage:statusImage];
     [self.statusItem setHighlightMode:YES];
+    
 
     self.brightnessController = [BrightnessController new];
     [self.brightnessController start];
@@ -36,7 +39,9 @@
         [self.loginController addLoginItem];
     }
     
-
+    [self.startupItem setState:NSOnState];
+    self.startupItemChecked = true;
+    
 }
 
 
@@ -57,5 +62,23 @@
         [self.toggle setTitle:STOP];
     }
 }
+
+- (IBAction)startupItemToggle:(id)sender {
+    if (self.startupItemChecked) {
+        if ([self.loginController isLoginItem]) {
+            [self.loginController removeLoginItem];
+        }
+        [self.startupItem setState:NSOffState];
+        self.startupItemChecked = false;
+    } else {
+        if (![self.loginController isLoginItem]) {
+            [self.loginController addLoginItem];
+        }
+        [self.startupItem setState:NSOnState];
+        self.startupItemChecked = true;
+    }
+}
+
+
 
 @end
