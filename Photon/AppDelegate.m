@@ -32,10 +32,10 @@
     
     
     self.loginController = [EMCLoginItem new];
-    NSLog(@"HI");
-    [self.loginController addLoginItem];
+    if (![self.loginController isLoginItem]) {
+        [self.loginController addLoginItem];
+    }
     
-    NSLog([self.loginController isLoginItem] ? @"YES" : @"NO");
 
 }
 

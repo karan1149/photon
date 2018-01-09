@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E1062A920040311002358D0 /* EMCLoginItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1062A720040311002358D0 /* EMCLoginItem.m */; };
 		F802B9E91AD81FB700FCFD65 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F802B9E81AD81FB700FCFD65 /* AppDelegate.m */; };
 		F802B9EB1AD81FB700FCFD65 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F802B9EA1AD81FB700FCFD65 /* main.m */; };
 		F802B9ED1AD81FB700FCFD65 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F802B9EC1AD81FB700FCFD65 /* Images.xcassets */; };
@@ -30,6 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9E1062A720040311002358D0 /* EMCLoginItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMCLoginItem.m; sourceTree = "<group>"; };
+		9E1062A820040311002358D0 /* EMCLoginItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCLoginItem.h; sourceTree = "<group>"; };
 		F802B9E21AD81FB700FCFD65 /* Photon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Photon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F802B9E61AD81FB700FCFD65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F802B9E71AD81FB700FCFD65 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -91,6 +94,8 @@
 		F802B9E41AD81FB700FCFD65 /* Photon */ = {
 			isa = PBXGroup;
 			children = (
+				9E1062A720040311002358D0 /* EMCLoginItem.m */,
+				9E1062A820040311002358D0 /* EMCLoginItem.h */,
 				F802B9E71AD81FB700FCFD65 /* AppDelegate.h */,
 				F802B9E81AD81FB700FCFD65 /* AppDelegate.m */,
 				F83E30F51AD8252D0098C5CC /* BrightnessController.h */,
@@ -239,6 +244,7 @@
 			files = (
 				F802B9EB1AD81FB700FCFD65 /* main.m in Sources */,
 				F83E30FB1AD836F10098C5CC /* util.c in Sources */,
+				9E1062A920040311002358D0 /* EMCLoginItem.m in Sources */,
 				F83E30F71AD8252D0098C5CC /* BrightnessController.m in Sources */,
 				F80722861E6BD17F000C3ECE /* NSArray+Functional.m in Sources */,
 				F802B9E91AD81FB700FCFD65 /* AppDelegate.m in Sources */,
