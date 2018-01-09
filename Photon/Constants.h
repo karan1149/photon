@@ -9,7 +9,7 @@
 
 #define DEFAULTS_CALIBRATION_POINTS (@"calibrationPoints")
 
-#define TICK_INTERVAL (0.5) // seconds
+#define TICK_INTERVAL (0.6) // seconds
 #define MIN_X_SPACING (10.0) // absolute difference in L* coordinate
 #define CHANGE_NOTICE (0.01) // difference in screen brightness level
 #define DEFAULT_BRIGHTNESS (0.5)
