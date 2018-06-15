@@ -14,11 +14,13 @@
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) Model *model;
 @property float lastSet;
-@property pid_t lastApp;
 @property bool noticed;
 @property float lastNoticed;
+@property bool running;
+@property int ticksPassed;
 
 - (void)tick:(NSTimer *)timer;
+- (void) activated;
 
 // even though the screen gradually transitions between brightness levels,
 // getBrightness returns the level to which the brightness is set
@@ -36,88 +38,114 @@
     self = [super init];
     if (self) {
         self.model = [Model new];
-        self.lastSet = -1; // this causes tick to notice that the brightness has changed significantly
-                           // which causes it to create a new data point for the current screen
-        self.lastApp = 0;
-        self.noticed = false;
-        self.lastNoticed = 0;
+        self.running = false;
     }
     return self;
 }
 
 - (BOOL)isRunning {
-    return self.timer && [self.timer isValid];
+    return self.running;
 }
 
 - (void)start {
-    if (self.timer) {
-        [self.timer invalidate];
-    }
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:TICK_INTERVAL
-                                                  target:self
-                                                selector:@selector(tick:)
-                                                userInfo:nil
-                                                 repeats:YES];
+    self.running = true;
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(activated) name:NSWorkspaceDidActivateApplicationNotification object:nil];
+//    if (self.timer) {
+//        [self.timer invalidate];
+//    }
+//    self.timer = [NSTimer scheduledTimerWithTimeInterval:TICK_INTERVAL
+//                                                  target:self
+//                                                selector:@selector(tick:)
+//                                                userInfo:nil
+//                                                 repeats:YES];
 }
 
 - (void)stop {
+    [[[NSWorkspace sharedWorkspace] notificationCenter] removeObserver:self];
     [self.timer invalidate];
     self.timer = nil;
+    self.running = false;
 }
 
-- (void)tick:(NSTimer *)timer {
-    // check if backlight has been manually changed
-    float setPoint = [self getBrightness];
-    if (self.noticed || fabsf(self.lastSet - setPoint) > CHANGE_NOTICE) {
-        if (!self.noticed) {
-            self.noticed = true;
-            self.lastNoticed = setPoint;
-            return; // wait till next tick to see if it's still changing
-        }
-        if (fabsf(setPoint - self.lastNoticed) > CHANGE_NOTICE) {
-            self.lastNoticed = setPoint;
-            return; // it's still changing
-        } else {
-            // get screen content lightness
-            CGImageRef contents = CGDisplayCreateImage(kCGDirectMainDisplay);
-            if (!contents) {
-                return;
-            }
-            double lightness = [self computeLightness:contents];
-            CFRelease(contents);
-            
-            [self.model observeOutput:setPoint forInput:lightness];
-            self.noticed = false;
-            
-            float brightness = [self.model predictFromInput:lightness];
-            
-            [self setBrightness:brightness];
-            
-            pid_t windowName = NSWorkspace.sharedWorkspace.frontmostApplication.processIdentifier;
-            self.lastApp = windowName;
-            
-        }
+- (void) activated {
+    if (self.timer) {
+        
     } else {
-        
-        pid_t windowName = NSWorkspace.sharedWorkspace.frontmostApplication.processIdentifier;
-        if (windowName == self.lastApp){
-            return;
-        }
-        self.lastApp = windowName;
-        
-        // get screen content lightness
-        CGImageRef contents = CGDisplayCreateImage(kCGDirectMainDisplay);
-        if (!contents) {
-            return;
-        }
-        double lightness = [self computeLightness:contents];
-        CFRelease(contents);
-        
-        float brightness = [self.model predictFromInput:lightness];
-        [self setBrightness:brightness];
-        
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:TICK_INTERVAL
+                                                      target:self
+                                                    selector:@selector(tick:)
+                                                    userInfo:nil
+                                                     repeats:YES];
+        self.ticksPassed = 0;
+
     }
+    
+    self.lastSet = -1; // this causes tick to notice that the brightness has changed significantly
+    // which causes it to create a new data point for the current screen
+    self.noticed = false;
+    self.lastNoticed = 0;
 }
+
+//- (void)tick:(NSTimer *)timer {
+//    NSLog(@"tick");
+//    // check if backlight has been manually changed
+//    float setPoint = [self getBrightness];
+//    if (self.noticed || fabsf(self.lastSet - setPoint) > CHANGE_NOTICE) {
+//        if (!self.noticed) {
+//            NSLog(@"just noticed");
+//            self.noticed = true;
+//            self.lastNoticed = setPoint;
+//            return; // wait till next tick to see if it's still changing
+//        }
+//        if (fabsf(setPoint - self.lastNoticed) > CHANGE_NOTICE) {
+//            NSLog(@"still noticing");
+//            self.lastNoticed = setPoint;
+//            return; // it's still changing
+//        } else {
+//            NSLog(@"stopped noticing");
+//            // get screen content lightness
+//            CGImageRef contents = CGDisplayCreateImage(kCGDirectMainDisplay);
+//            if (!contents) {
+//                NSLog(@"failed to get contents");
+//                return;
+//            }
+//            NSLog(@"got contents, sending to model");
+//            double lightness = [self computeLightness:contents];
+//            CFRelease(contents);
+//
+//            [self.model observeOutput:setPoint forInput:lightness];
+//            self.noticed = false;
+//
+//            float brightness = [self.model predictFromInput:lightness];
+//
+//            [self setBrightness:brightness];
+//
+//            pid_t windowName = NSWorkspace.sharedWorkspace.frontmostApplication.processIdentifier;
+//            self.lastApp = windowName;
+//
+//        }
+//    } else {
+//
+//        pid_t windowName = NSWorkspace.sharedWorkspace.frontmostApplication.processIdentifier;
+//        if (windowName == self.lastApp){
+//            return;
+//        }
+//        NSLog(@"app change");
+//        self.lastApp = windowName;
+//
+//        // get screen content lightness
+//        CGImageRef contents = CGDisplayCreateImage(kCGDirectMainDisplay);
+//        if (!contents) {
+//            return;
+//        }
+//        double lightness = [self computeLightness:contents];
+//        CFRelease(contents);
+//
+//        float brightness = [self.model predictFromInput:lightness];
+//        [self setBrightness:brightness];
+//
+//    }
+//}
 
 - (double)computeLightness:(CGImageRef) image {
     CFDataRef dataRef = CGDataProviderCopyData(CGImageGetDataProvider(image));
