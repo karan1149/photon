@@ -10,7 +10,7 @@
 #define DEFAULTS_CALIBRATION_POINTS (@"calibrationPoints")
 
 #define TICK_INTERVAL (.3) // seconds
-#define WAIT_TIME (3) // time to wait after app change for changes
+#define WAIT_TIME (4) // time to wait after app change for changes
 #define MIN_X_SPACING (0.1) // absolute difference in L* coordinate
 #define CHANGE_NOTICE (0.01) // difference in screen brightness level
 #define DEFAULT_BRIGHTNESS (0.5)
