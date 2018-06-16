@@ -13,11 +13,11 @@
 
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) Model *model;
-@property float lastSet;
-@property bool noticed;
+//@property float lastSet;
 @property float lastNoticed;
 @property bool running;
 @property int ticksPassed;
+@property bool noticed;
 
 - (void)tick:(NSTimer *)timer;
 - (void) activated;
@@ -197,6 +197,7 @@
 }
 
 - (void)setBrightness:(float)level {
+    NSLog(@"setting to %f", level);
     io_iterator_t iterator;
     kern_return_t result = IOServiceGetMatchingServices(kIOMasterPortDefault,
                                                         IOServiceMatching("IODisplayConnect"),
@@ -208,7 +209,7 @@
             IOObjectRelease(service);
         }
     }
-    self.lastSet = [self getBrightness]; // not just storing `level` cause weird rounding stuff
+//    self.lastSet = [self getBrightness]; // not just storing `level` cause weird rounding stuff
 }
 
 @end
