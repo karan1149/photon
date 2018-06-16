@@ -81,4 +81,7 @@
 
 
 
+- (IBAction)resetItem:(id)sender {
+    [self.brightnessController reset];
+}
 @end
