@@ -146,6 +146,12 @@
 //
 //    }
 //}
+- (void)reset {
+    [self.timer invalidate];
+    self.timer = nil;
+    [self.model reset];
+    [self.model observeOutput:[self getBrightness] forInput:[self getLightness]];
+}
 
 - (double)computeLightness:(CGImageRef) image {
     CFDataRef dataRef = CGDataProviderCopyData(CGImageGetDataProvider(image));

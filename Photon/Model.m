@@ -145,4 +145,9 @@
     [defaults setObject:encoded forKey:DEFAULTS_CALIBRATION_POINTS];
 }
 
+- (void)reset{
+    self.points = [NSMutableArray new];
+    [self synchronizeDefaults];
+}
+
 @end

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -28,6 +28,12 @@
                         <action selector="menuActionToggle:" target="Voe-Tx-rLC" id="74T-WU-EiS"/>
                     </connections>
                 </menuItem>
+                <menuItem title="Reset" id="iAj-xn-f1s">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="resetItem:" target="Voe-Tx-rLC" id="acV-wi-syJ"/>
+                    </connections>
+                </menuItem>
                 <menuItem title="Launch on startup" id="pBk-cu-crb">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -42,7 +48,7 @@
                     </connections>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="244.5" y="305.5"/>
+            <point key="canvasLocation" x="244" y="305.5"/>
         </menu>
     </objects>
 </document>

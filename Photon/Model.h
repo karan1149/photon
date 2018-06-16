@@ -7,5 +7,6 @@
 
 - (void)observeOutput:(float)output forInput:(float)input;
 - (float)predictFromInput:(float)input;
+- (void)reset;
 
 @end
