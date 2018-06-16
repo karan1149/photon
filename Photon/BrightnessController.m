@@ -13,7 +13,6 @@
 
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) Model *model;
-//@property float lastSet;
 @property float lastNoticed;
 @property bool running;
 @property int ticksPassed;
@@ -23,13 +22,8 @@
 - (void) activated;
 - (void) observeSetPoint:(float) setPoint;
 - (double)getLightness;
-
-// even though the screen gradually transitions between brightness levels,
-// getBrightness returns the level to which the brightness is set
 - (float)getBrightness;
-
 - (void)setBrightness:(float) level;
-
 - (double)computeLightness:(CGImageRef) image;
 
 @end
@@ -49,6 +43,10 @@
     return self.running;
 }
 
+/*
+ Starts, maintaining invariant that observer is set, model has at least one point.
+ Also makes a timer to observe any changes.
+ */
 - (void)start {
     self.running = true;
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(activated) name:NSWorkspaceDidActivateApplicationNotification object:nil];
@@ -56,21 +54,26 @@
     [self makeTimer];
 }
 
+/*
+ Stops, relaxing invariants, stopping any timers that are running.
+ */
 - (void)stop {
     [[[NSWorkspace sharedWorkspace] notificationCenter] removeObserver:self];
     [self.timer invalidate];
     self.timer = nil;
     self.running = false;
 }
-
 - (void) activated {
     NSLog(@"activated");
     [self makeTimer];
 }
 
+/*
+ Sets a timer if one is not set, resetting timer
+ state regardless.
+ */
 - (void) makeTimer {
     self.ticksPassed = 0;
-//    self.lastSet = -1;
     self.noticed = false;
     self.lastNoticed = [self getBrightness];
     if (!self.timer) {
@@ -88,18 +91,18 @@
  brightness to match the model.
  */
 - (void) observeSetPoint: (float) setPoint {
-    // get screen content lightness
     double lightness = [self getLightness];
     if (lightness < 0) return;
     [self.model observeOutput:setPoint forInput:lightness];
-    
-    
-    // these don't seem needed
-//    float brightness = [self.model predictFromInput:lightness];
-//
-//    [self setBrightness:brightness];
 }
 
+/*
+ Timer tick. On first tick, set brightness to prediction.
+ On later ticks, check if brightness has changed. If so, update seen
+ and check again. If not, do nothing, unless we just finished noticing
+ changes or we run out of time. In this case, update the model
+ with the current observation and remove the timer.
+ */
 - (void)tick:(NSTimer *)timer {
     if (self.ticksPassed == 0){
         double lightness = [self getLightness];
@@ -121,22 +124,18 @@
         self.noticed = true;
         return; // it's still changing
     } else {
-        if (self.noticed){
-            NSLog(@"stopped noticing");
+        if (self.noticed || self.ticksPassed * TICK_INTERVAL > WAIT_TIME){
             [self observeSetPoint:setPoint];
             [self.timer invalidate];
             self.timer = nil;
             return;
         }
-        if (self.ticksPassed * TICK_INTERVAL > WAIT_TIME) {
-            [self observeSetPoint:setPoint];
-            
-            [self.timer invalidate];
-            self.timer = nil;
-        }
     }
 }
 
+/*
+ Remove timer, reset model points, and observe the current situation.
+ */
 - (void)reset {
     [self.timer invalidate];
     self.timer = nil;
@@ -213,7 +212,6 @@
             IOObjectRelease(service);
         }
     }
-//    self.lastSet = [self getBrightness]; // not just storing `level` cause weird rounding stuff
 }
 
 @end
