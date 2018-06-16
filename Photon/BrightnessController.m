@@ -64,7 +64,6 @@
     self.running = false;
 }
 - (void) activated {
-    NSLog(@"activated");
     [self makeTimer];
 }
 
@@ -77,7 +76,6 @@
     self.noticed = false;
     self.lastNoticed = [self getBrightness];
     if (!self.timer) {
-        NSLog(@"adding timer");
         self.timer = [NSTimer scheduledTimerWithTimeInterval:TICK_INTERVAL
                                                       target:self
                                                     selector:@selector(tick:)
@@ -119,7 +117,6 @@
     // check if backlight has been manually changed
     float setPoint = [self getBrightness];
     if (fabsf(setPoint - self.lastNoticed) > CHANGE_NOTICE) {
-        NSLog(@"still noticing");
         self.lastNoticed = setPoint;
         self.noticed = true;
         return; // it's still changing
@@ -148,7 +145,6 @@
 - (double)getLightness {
     CGImageRef contents = CGDisplayCreateImage(kCGDirectMainDisplay);
     if (!contents) {
-        NSLog(@"failed to get contents");
         return -1;
     }
     double lightness = [self computeLightness:contents];
@@ -200,7 +196,6 @@
 }
 
 - (void)setBrightness:(float)level {
-    NSLog(@"setting to %f", level);
     io_iterator_t iterator;
     kern_return_t result = IOServiceGetMatchingServices(kIOMasterPortDefault,
                                                         IOServiceMatching("IODisplayConnect"),

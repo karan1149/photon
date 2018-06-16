@@ -66,7 +66,6 @@
 }
 
 - (void)observeOutput:(float)output forInput:(float)input {
-    NSLog(@"obs %f: %f", input, output);
     // add point
     XYPoint *point = [[XYPoint alloc] initWithX:input andY:output];
     [self.points addObject:point];
@@ -112,11 +111,9 @@
 }
 
 - (float)predictFromInput:(float)input {
-    NSLog(@"predicting from: %f", input);
     // nearest neighbor
     float bestdiff = FLT_MAX, besty = DEFAULT_BRIGHTNESS;
     for (XYPoint *p in self.points) {
-        NSLog(@"p %f: %f", p.x, p.y);
         float diff = fabsf(p.x - input);
         if (diff < bestdiff) {
             bestdiff = diff;
